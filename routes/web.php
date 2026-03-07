@@ -10,10 +10,10 @@ Route::get('/web', function () {
 //Proses Login
 Route::get('/masuk', function () {return view('login'); });
 Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
-Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout']);
+Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth');
 
 //tes Login
-Route::get('/tes',[App\Http\Controllers\UserController::class,'tes']);
+Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');;
 
 
 
