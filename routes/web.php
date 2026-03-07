@@ -7,8 +7,17 @@ Route::get('/web', function () {
     return view('web.index');
 });
 
+//Proses Login
 Route::get('/masuk', function () {return view('login'); });
+Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
+Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout']);
 
+//tes Login
+Route::get('/tes',[App\Http\Controllers\UserController::class,'tes']);
+
+
+
+//Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });
 Route::get('/sto', function () { return view('useri.sto'); });
 Route::get('/bpd', function () { return view('useri.bpd'); });

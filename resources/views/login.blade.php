@@ -47,13 +47,13 @@
                                         <div class="card login-page border-0" style="z-index: 1">
                                             <div class="card-body p-0">
                                                 <h4 class="card-title">Masuk Sistem</h4>
-                                                <form class="login-form mt-4" method="POST" action="">
+                                                <form class="login-form mt-4" method="POST" action="/auth">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="mb-3">
                                                                 <label class="form-label">Masukan Nomor Induk Kependudukan <span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control" placeholder="Nomor Induk Kependudukan" name="email" required="">
+                                                                <input type="text" class="form-control" placeholder="Nomor Induk Kependudukan" name="nik" required="">
                                                             </div>
                                                         </div><!--end col-->
 
