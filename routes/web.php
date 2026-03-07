@@ -17,7 +17,8 @@ Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middlewar
 
 
 //Menu di Admin
-Route::get('/admin',function(){return view('admin.index');})->middleware('auth');
+Route::get('/admin',function(){return view('admin.index');})->middleware('admin');
+Route::get('/admin/pengguna',function(){return view('admin.pengguna');})->middleware('admin');
 
 //Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });

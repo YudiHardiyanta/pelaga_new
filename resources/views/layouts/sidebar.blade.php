@@ -13,6 +13,21 @@
                         <span>Profil</span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow ">
+                        <i class="fa fa-file-alt"></i>
+                        <span>Manajemen Web</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ url('admin/pengguna') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Pengguna</a></li>
+                        <li><a href="{{ url('sk-kematian') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Berita</a></li>
+                        <li><a href="{{ url('sk-kematian') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Galery</a></li>
+                    </ul>
+                </li>
+
                 <li class="menu-title">Layanan</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow ">
