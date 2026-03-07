@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->UserRoles->Roles->ettd;
         });
         Gate::define('user-config', function ($user) {
-            return $user->UserRoles->Roles->user;
+            return $user->UserRoles->Roles->users;
         });
     }
 }
