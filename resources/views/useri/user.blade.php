@@ -82,7 +82,7 @@
         <div class="dropdown-menu bg-light mt-2">
             <a href="/profile" class="dropdown-item">Profile</a>
 
-            <form method="GET" action="{{ route('keluar') }}">
+            <form method="GET" action="keluar">
                 @csrf
                 <button type="submit" class="dropdown-item">
                     Keluar
