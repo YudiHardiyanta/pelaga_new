@@ -8,13 +8,37 @@
             <!-- Left Menu Start -->
             <ul class="left-menu list-unstyled" id="side-menu">
                 <li>
+                    <a href="{{ url('profil') }}" class="">
+                        <i class="fas fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+                <li class="menu-title">Layanan</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow ">
+                        <i class="fa fa-file-alt"></i>
+                        <span>Permohonan</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ url('sk-kelahiran') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>SK Kelahiran</a></li>
+                        <li><a href="{{ url('sk-kematian') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>SK Kematian</a></li>
+                    </ul>
+                    <a href="javascript: void(0);" class="has-arrow ">
+                        <i class="fa fa-file-alt"></i>
+                        <span>Permohonan</span>
+                    </a>
+                </li>
+
+<!--                 <li>
                     <a href="{{ url('index') }}" class="">
                         <i class="fas fa-desktop"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-                <li class="menu-title">Elements</li>
+                <li class="menu-title">Administrasi</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow ">
@@ -375,7 +399,7 @@
                         <i class="fas fa-id-badge"></i>
                         <span>Contacts</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <!-- Sidebar -->

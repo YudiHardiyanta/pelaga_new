@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/web', function () {
+Route::get('/', function () {
     return view('web.index');
 });
 
@@ -13,9 +13,11 @@ Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
 Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth');
 
 //tes Login
-Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');;
+Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');
 
 
+//Menu di Admin
+Route::get('/admin',function(){return view('admin.index');})->middleware('auth');
 
 //Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });
@@ -26,5 +28,5 @@ Route::get('/taruna', function () { return view('useri.taruna'); });
 Route::get('/linmas', function () { return view('useri.linmas'); });
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

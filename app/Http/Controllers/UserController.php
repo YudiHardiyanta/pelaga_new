@@ -18,10 +18,8 @@ class UserController extends Controller
             ], 401);
         }
 
-        return response()->json([
-            'message' => 'Login berhasil',
-            'user' => Auth::user()
-        ]);
+        // misal langsung masuk ke halaman awal
+        return redirect('/');
     }
 
     public function logout(Request $request)

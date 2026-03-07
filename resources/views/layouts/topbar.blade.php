@@ -6,7 +6,8 @@
 
         <!-- Start Navbar-Brand -->
         <div class="navbar-logo-box">
-            <a href="{{ url('index') }}" class="logo logo-dark">
+            <span>PELAGA</span>
+            <!-- <a href="{{ url('index') }}" class="logo logo-dark">
                 <span class="logo-sm">
                     <img src="{{ URL::asset('build/images/logo-sm.png') }}" alt="logo-sm-dark" height="20">
                 </span>
@@ -22,7 +23,7 @@
                 <span class="logo-lg">
                     <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="logo-light" height="18">
                 </span>
-            </a>
+            </a> -->
 
             <button type="button" class="btn btn-sm top-icon sidebar-btn" id="sidebar-btn">
                 <i class="mdi mdi-menu-open align-middle fs-19"></i>
@@ -33,7 +34,7 @@
         <!-- Start menu -->
         <div class="d-flex justify-content-between menu-sm px-3 ms-auto">
             <div class="d-flex align-items-center gap-2">
-                <div class="dropdown d-none d-lg-block">
+                <!-- <div class="dropdown d-none d-lg-block">
                     <button type="button" class="btn btn-primary btn-sm fs-14 d-inline" data-bs-toggle="dropdown">
                         Apps
                         <i class="mdi mdi-chevron-down align-middle"></i>
@@ -172,19 +173,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="d-flex align-items-center gap-2">
                 <!--Start App Search-->
-                <form class="app-search d-none d-lg-block">
+                <!-- <form class="app-search d-none d-lg-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="fab fa-sistrix fs-17 align-middle"></span>
                     </div>
-                </form>
+                </form> -->
                 <!--End App Search-->
-
+                <div class="dropdown d-inline-block">
+                    <h5>Selamat Datang, {{ auth()->user()->name; }}</h5>
+                </div>
                 <!-- Start Notification -->
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn btn-sm top-icon" id="page-header-notifications-dropdown"
@@ -314,15 +317,16 @@
                 <!-- End Notification -->
 
                 <!-- Start Activities -->
-                <div class="d-inline-block activities">
+                <!-- <div class="d-inline-block activities">
                     <button type="button" class="btn btn-sm top-icon" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvas-rightsidabar">
                         <i class="fas fa-table align-middle"></i>
                     </button>
-                </div>
+                </div> -->
                 <!-- End Activities -->
 
                 <!-- Start Profile -->
+
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn btn-sm top-icon p-0" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -334,53 +338,35 @@
                         <div class="card border-0">
                             <div class="card-header bg-primary rounded-0">
                                 <div class="rich-list-item w-100 p-0">
-                                    <div class="rich-list-prepend">
-                                        <div class="avatar avatar-label-light avatar-circle">
-                                            <div class="avatar-display"><i class="fa fa-user-alt"></i></div>
-                                        </div>
-                                    </div>
                                     <div class="rich-list-content">
-                                        <h3 class="rich-list-title text-white">Charlie Stone</h3>
-                                        <span class="rich-list-subtitle text-white">admin@codubucks.in</span>
-                                    </div>
-                                    <div class="rich-list-append"><span class="badge badge-label-light fs-6">6+</span>
+                                        <h3 class="rich-list-title text-white">{{ auth()->user()->name; }}</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body p-0">
-                                <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
-                                    <div class="grid-nav-row">
-                                        <a href="{{ url('apps-contact') }}" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
-                                            <span class="grid-nav-content">Profile</span>
-                                        </a>
-                                        <a href="#!" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-comments"></i></div>
-                                            <span class="grid-nav-content">Messages</span>
-                                        </a>
-                                        <a href="#!" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
-                                            <span class="grid-nav-content">Activities</span>
-                                        </a>
+                            <!-- Role -->
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="{{ url('admin') }}" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-1">
+                                            <h6 class="mb-1">ADMIN</h6>
+                                        </div>
+                                        <i class="mdi mdi-chevron-right align-middle ms-2"></i>
                                     </div>
-                                    <div class="grid-nav-row">
-                                        <a href="#!" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-calendar-check"></i></div>
-                                            <span class="grid-nav-content">Tasks</span>
-                                        </a>
-                                        <a href="#!" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-sticky-note"></i></div>
-                                            <span class="grid-nav-content">Notes</span>
-                                        </a>
-                                        <a href="#!" class="grid-nav-item">
-                                            <div class="grid-nav-icon"><i class="far fa-bell"></i></div>
-                                            <span class="grid-nav-content">Notification</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                            <div class="card-footer card-footer-bordered rounded-0"><a href="{{ url('auth-login') }}"
-                                    class="btn btn-label-danger">Sign out</a></div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="{{ url('/') }}" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-1">
+                                            <h6 class="mb-1">WEB</h6>
+                                        </div>
+                                        <i class="mdi mdi-chevron-right align-middle ms-2"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- End Role -->
+                            <div class="card-footer card-footer-bordered rounded-0 text-end"><a href="{{ url('keluar') }}"
+                                    class="btn btn-label-danger">Keluar</a></div>
                         </div>
                     </div>
                 </div>
