@@ -344,6 +344,7 @@
                                 </div>
                             </div>
                             <!-- Role -->
+                             @can('admin-menu')
                             <div data-simplebar style="max-height: 230px;">
                                 <a href="{{ url('admin') }}" class="text-reset notification-item">
                                     <div class="d-flex">
@@ -354,6 +355,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endcan
                             <div data-simplebar style="max-height: 230px;">
                                 <a href="{{ url('/') }}" class="text-reset notification-item">
                                     <div class="d-flex">

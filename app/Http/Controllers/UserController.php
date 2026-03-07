@@ -33,6 +33,6 @@ class UserController extends Controller
     }
 
     public function tes(Request $request){
-        return Auth::user();
+        return Auth::user()->UserRoles->Roles;
     }
 }
