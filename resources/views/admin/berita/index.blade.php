@@ -32,7 +32,7 @@ Berita
 </div>
 
 
-    
+
 
 <div class="row">
     <div class="col-xl-12">
@@ -55,7 +55,7 @@ Berita
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card-body">
-                            <table id="datatable" class="table table-hover table-bordered table-striped dt-responsive nowrap"
+                            <table id="berita" class="table table-hover table-bordered table-striped dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
@@ -68,17 +68,8 @@ Berita
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tes Berita</td>
-                                        <td>Tes Deskripsi</td>
-                                        <td>Tes Tanggal</td>
-                                        <td>Penerbit</td>
-                                        <td class="text-center"><a href="#" class="btn btn-sm btn-primary">Aktif</a></td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -109,10 +100,63 @@ Berita
 <script src="{{ URL::asset('build/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
 
 <!-- Datatable init js -->
-<script src="{{ URL::asset('build/js/pages/datatables-base.init.js') }}"></script>
+<script>
+    $('#berita').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('berita') }}",
+        columns: [{
+                data: 'berita_title',
+                name: 'berita_title',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'berita_content',
+                name: 'berita_content'
+            },
+            {
+                data: 'created_at',
+                name: 'created_at'
+            },
+            {
+                data: 'user.name',
+                name: 'user.name'
+            },
+            {
+                data: 'status',
+                name: 'status',
+                render: function(data, type, row) {
+                    if (data == 1) {
+                        return '<button class="btn btn-primary btn-sm">Aktif</button>';
+                    } else {
+                        return '<button class="btn btn-secondary btn-sm">Nonaktif</button>';
+                    }
+                }
+            },
+            {
+                data: 'id',
+                name: 'id',
+                render: function(data, type, row) {
+                    return '<a href="/admin/berita/edit/' + data + '" class="btn btn-primary btn-sm">Edit</a>';
+                },
+                orderable: false,
+                searchable: false
+            },
+        ],
+        "language": {
+            "paginate": {
+                "previous": "<i class='mdi mdi-chevron-left'>",
+                "next": "<i class='mdi mdi-chevron-right'>"
+            }
+        },
+        "drawCallback": function() {
+            $('.dataTables_paginate > .pagination').addClass('pagination');
+        }
+    });
+</script>
+
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
-
-
 <script src="{{ URL::asset('build/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/dashboard.init.js') }}"></script>
 @endsection

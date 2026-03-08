@@ -1,7 +1,7 @@
 @extends('layouts.master-without-page-title')
 
 @section('title')
-Tambah Berita
+Berita
 @endsection
 
 @section('css')
@@ -34,21 +34,47 @@ Tambah Berita
             </div>
             <div class="card-body">
                 <div class="row">
-                    <form action="/admin/berita" method="post" enctype="multipart/form-data">
+                    <form action="{{ $mode=='Edit' ? '/admin/berita/'.$berita->id : '/admin/berita' }}"
+                        method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4 align-items-center">
                             <div class="col-lg-3">
                                 <label class="fw-semibold">Jenis Berita: </label>
                             </div>
                             <div class="col-lg-9">
-                                <select class="form-control" data-select2-selector="country" name="jenis" placeholder="Jenis Berita">
+                                <select class="form-control" data-select2-selector="country" name="jenis">
                                     <option value="">Pilih Jenis Berita</option>
-                                    <option data-country="1">Pemerintah Desa</option>
-                                    <option data-country="2">Kelompok PKK</option>
-                                    <option data-country="3">Karang Taruna</option>
-                                    <option data-country="4">Linmas</option>
-                                    <option data-country="5">Upacara Adat</option>
-                                    <option data-country="5">Pariwisata</option>
+
+                                    <option value="Pemerintah Desa"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Pemerintah Desa' ? 'selected' : '' }}>
+                                        Pemerintah Desa
+                                    </option>
+
+                                    <option value="Kelompok PKK"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Kelompok PKK' ? 'selected' : '' }}>
+                                        Kelompok PKK
+                                    </option>
+
+                                    <option value="Karang Taruna"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Karang Taruna' ? 'selected' : '' }}>
+                                        Karang Taruna
+                                    </option>
+
+                                    <option value="Linmas"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Linmas' ? 'selected' : '' }}>
+                                        Linmas
+                                    </option>
+
+                                    <option value="Upacara Adat"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Upacara Adat' ? 'selected' : '' }}>
+                                        Upacara Adat
+                                    </option>
+
+                                    <option value="Pariwisata"
+                                        {{ old('jenis', $berita->berita_jenis ?? '') == 'Pariwisata' ? 'selected' : '' }}>
+                                        Pariwisata
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -59,7 +85,7 @@ Tambah Berita
                             <div class="col-lg-9">
                                 <div class="input-group">
                                     <div class="input-group-text"><i class="bi bi-type-h1"></i></div>
-                                    <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Berita">
+                                    <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Berita" value="{{ old('judul', $berita->berita_title ?? '') }}">
                                     @error('judul')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -78,7 +104,7 @@ Tambah Berita
                             <div class="col-lg-9">
                                 <div class="input-group">
                                     <div class="input-group-text"><i class="feather-type"></i></div>
-                                    <textarea class="form-control @error('berita') is-invalid @enderror" id="berita" name="berita" cols="30" rows="5" placeholder="Isi Berita"></textarea>
+                                    <textarea class="form-control @error('berita') is-invalid @enderror" id="berita" name="berita" cols="30" rows="5" placeholder="Isi Berita">{{ old('berita', $berita->berita_content ?? '') }}</textarea>
                                     @error('berita')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -88,7 +114,29 @@ Tambah Berita
 
                             </div>
                         </div>
+                        @if($mode=='Edit')
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-lg-3">
+                                <label for="status" class="fw-semibold">Aktif atau Nonaktifkan: </label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault" name="status" {{ $mode=='Edit' && $berita->status ? 'checked="checked"' : ''}}  /> <label class="form-check-label"
+                                            for="flexSwitchCheckDefault" ></label>
+                                    </div>
+                                    @error('status')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
 
+
+                        </div>
+                        @endif
                         <div class="row mb-4 align-items-center">
                             <div class="col-lg-3">
                                 <label class="fw-semibold">Foto: </label>
@@ -97,7 +145,17 @@ Tambah Berita
                                 <div class="col-lg-9">
                                     <div class="input-group">
                                         <div class="input-group-text"><i class="bi bi-images"></i></div>
-                                        <input type="file" class="form-control" id="foto" name="foto" placeholder="foto" accept="image/*">
+                                        @if(!empty($berita->berita_foto))
+                                        <div class="mb-2">
+                                            <img src="{{ asset('storage/berita/'.$berita->berita_foto) }}" width="150">
+                                        </div>
+                                        @endif
+
+                                        <input type="file"
+                                            class="form-control"
+                                            id="foto"
+                                            name="foto"
+                                            accept="image/*">
                                     </div>
                                 </div>
                             </div>

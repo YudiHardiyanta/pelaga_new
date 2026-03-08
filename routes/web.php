@@ -19,11 +19,18 @@ Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middlewar
 //Menu di Admin
 Route::get('/admin',function(){return view('admin.index');})->middleware('admin');
 Route::get('/admin/pengguna',function(){return view('admin.pengguna');})->middleware('admin');
-Route::get('/admin/berita',function(){return view('admin.berita.index');})->middleware('admin');
+
 
 //Menu Manajemen Berita
+Route::get('/admin/berita',[App\Http\Controllers\BeritaController::class, 'page'])->middleware('admin');
 Route::get('/admin/berita/tambah',[App\Http\Controllers\BeritaController::class, 'add'])->middleware('admin');
 Route::post('/admin/berita',[App\Http\Controllers\BeritaController::class, 'store'])->middleware('admin');
+Route::post('/admin/berita/{id}',[App\Http\Controllers\BeritaController::class, 'patch'])->middleware('admin');
+Route::get('/admin/berita/edit/{id}',[App\Http\Controllers\BeritaController::class, 'edit'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/berita/list',[App\Http\Controllers\BeritaController::class, 'getByCreated'])->middleware('admin')->name('berita');
+
+
 
 
 //Menu di Web
