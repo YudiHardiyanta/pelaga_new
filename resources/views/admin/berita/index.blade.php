@@ -59,7 +59,8 @@ Berita
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th scope="row">Judul</th>
+                                        <th>Judul</th>
+                                        <th>Jenis</th>
                                         <th>Deskripsi Singkat</th>
                                         <th>Tanggal</th>
                                         <th>Penerbit</th>
@@ -112,12 +113,21 @@ Berita
                 searchable: false
             },
             {
+                data: 'berita_jenis',
+                name: 'berita_jenis'
+            },
+            {
                 data: 'berita_content',
                 name: 'berita_content'
             },
+            
             {
                 data: 'created_at',
-                name: 'created_at'
+                name: 'created_at',
+                render: function(data) {
+                    let date = new Date(data);
+                    return date.toLocaleDateString('id-ID');
+                }
             },
             {
                 data: 'user.name',
