@@ -32,6 +32,13 @@ Route::get('/admin/berita/list',[App\Http\Controllers\BeritaController::class, '
 
 
 
+//Menu Layanan Pengaduan
+Route::get('/admin/pengaduan',[App\Http\Controllers\PengaduanController::class, 'page'])->middleware('admin');
+Route::get('/admin/pengaduan/tanggapi/{id}',[App\Http\Controllers\PengaduanController::class, 'tanggapi'])->middleware('admin');
+Route::post('/admin/pengaduan/{id}',[App\Http\Controllers\PengaduanController::class, 'patch'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/pengaduan/list',[App\Http\Controllers\PengaduanController::class, 'getDataTable'])->middleware('admin')->name('pengaduan');
+
 
 //Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });

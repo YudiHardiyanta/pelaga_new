@@ -46,9 +46,11 @@
                         <li><a href="{{ url('sk-kematian') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>SK Kematian</a></li>
                     </ul>
-                    <a href="javascript: void(0);" class="has-arrow ">
-                        <i class="fa fa-file-alt"></i>
-                        <span>Permohonan</span>
+                </li>
+                <li>
+                    <a href="{{ url('admin/pengaduan') }}" class="">
+                        <i class="fas fa-comments"></i>
+                        <span>Pengaduan</span>
                     </a>
                 </li>
             </ul>
