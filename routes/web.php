@@ -10,7 +10,7 @@ Route::get('/', function () {
 //Proses Login
 Route::get('/masuk', function () {return view('login'); });
 Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
-Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth');
+Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth')->name('logout');
 
 //tes Login
 Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');
@@ -40,6 +40,7 @@ Route::post('/admin/pengaduan/{id}',[App\Http\Controllers\PengaduanController::c
 Route::get('/admin/pengaduan/list',[App\Http\Controllers\PengaduanController::class, 'getDataTable'])->middleware('admin')->name('pengaduan');
 
 
+
 //Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });
 Route::get('/sto', function () { return view('useri.sto'); });
@@ -47,6 +48,10 @@ Route::get('/bpd', function () { return view('useri.bpd'); });
 Route::get('/pkk', function () { return view('useri.pkk'); });
 Route::get('/taruna', function () { return view('useri.taruna'); });
 Route::get('/linmas', function () { return view('useri.linmas'); });
+
+//Menu di web
+Route::get('/pengaduan', function () { return view('web.pengaduan'); });
+Route::post('/pengaduan',[App\Http\Controllers\PengaduanController::class, 'store'])->name('add_pengaduan');
 
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
