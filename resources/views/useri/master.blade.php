@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{ asset('resources/images/favicon.ico') }}" rel="icon">
+    <link href="resources/images/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +21,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -46,8 +46,8 @@
     <div class="container-fluid sticky-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
-                <a href="/" class="navbar-brand d-flex align-items-center">
-                    <img src="{{ asset('resources/images/logo-icon.png')}}" alt="Logo Desa Pelaga" class="me-2 logo-desa">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
+                    <img src="resources/images/logo-icon.png" alt="Logo Desa Pelaga" class="me-2 logo-desa">
                     <span class="fw-bold fs-5 text-dark">PEMERINTAH DESA PELAGA</span>
                 </a>
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
@@ -59,42 +59,25 @@
                         <a href="/" class="nav-item nav-link active">beranda</a>
                         <a href="/permohonan" class="nav-item nav-link">Permohonan</a>
                         <a href="/pengaduan" class="nav-item nav-link">Pengaduan</a>
-                        <a href="/terbaru" class="nav-item nav-link">Berita</a>
-                        <a href="/jdih" class="nav-item nav-link">Peraturan</a>
+                        <a href="jdih" class="nav-item nav-link">Peraturan</a>
                         <div class="nav-item dropdown">
                             <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang</a>
                             <div class="dropdown-menu bg-light mt-2">
                                 <a href="/visi" class="dropdown-item">Visi Misi</a>
                                 <a href="/sto" class="dropdown-item">Struktur Organisasi</a>
                                 <a href="/bpd" class="dropdown-item">BPD</a>
-                                <a href="/taruna" class="dropdown-item">Karang Taruna</a>
+                                <a href="taruna" class="dropdown-item">Karang Taruna</a>
                                 <a href="/pkk" class="dropdown-item">PKK</a>
                                 <a href="/linmas" class="dropdown-item">Linmas</a>
-                                <a href="/kontak" class="dropdown-item">Kontak</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
-    @auth
-        <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            {{ Auth::user()->name }}
-        </a>
-
-        <div class="dropdown-menu bg-light mt-2">
-            <a href="/profile" class="dropdown-item">Profile</a>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="dropdown-item">
-                    Keluar
-                </button>
-            </form>
-        </div>
-    @endauth
-
-    @guest
-        <a href="/masuk" class="nav-link">Login</a>
-    @endguest
-</div>
+                            <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu bg-light mt-2">
+                                <a href="/profile" class="dropdown-item">Profile</a>
+                                <a href="/logout" class="dropdown-item">Keluar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -105,21 +88,28 @@
     @yield('content')
 
     <!-- Newsletter Start -->
-    <div class="container-fluid bg-primary py-5">
-    <div class="container">
-        <div class="row align-items-center g-4 bg-white rounded shadow overflow-hidden">
-        
-            <!-- Google Maps -->
-            <div class="p-4">
-                <h4 class="mb-4 text-primary text-center">Lokasi Desa Pelaga</h4>
-
-                <div class="ratio ratio-21x9">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75120.93681376587!2d115.16707816401717!3d-8.297036659056834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd18a3ed8f6cf27%3A0x5030bfbca82fae0!2sPelaga%2C%20Kec.%20Petang%2C%20Kabupaten%20Badung%2C%20Bali!5e0!3m2!1sid!2sid!4v1771732530138!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="container-fluid bg-primary newsletter p-0">
+        <div class="container p-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-5 ps-lg-0 text-start wow fadeIn" data-wow-delay="0.2s">
+                    <img class="img-fluid w-100" src="img/newsletter.jpg" alt="">
+                </div>
+                <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-5">
+                        <h1 class="mb-5">Berlangganan <span
+                                class="text-uppercase text-primary bg-white px-2">Berita</span></h1>
+                        <div class="position-relative w-100 mb-2">
+                            <input class="form-control border-0 w-100 ps-4 pe-5" type="text"
+                                placeholder="Enter Your Email" style="height: 60px;">
+                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-2 me-2"><i
+                                    class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                        <p class="mb-0">Untuk menambahkan berita bisa melalui email</p>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
-</div>
     <!-- Newsletter End -->
 
 
@@ -151,17 +141,17 @@
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
                     <h5 class="text-white mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="https://badungkab.go.id" target="_blank">Kabupaten Badung</a>
-                    <a class="btn btn-link" href="https://baliprov.go.id">Provinsi Bali</a>
-                    <a class="btn btn-link" href="https://kemendesa.go.id">Kementrian Desa</a>
+                    <a class="btn btn-link" href="badungkab.go.id">Kabupaten Badung</a>
+                    <a class="btn btn-link" href="baliprov.go.id">Provinsi Bali</a>
+                    <a class="btn btn-link" href="kemendesa.go.id">Kementrian Desa</a>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
                     <h5 class="text-white mb-4">Satuan Lingkungan Setempat</h5>
-                    <a class="btn btn-link" href="#!">Banjar Semanik</a>
-                    <a class="btn btn-link" href="#!">Banjar Kiadan</a>
-                    <a class="btn btn-link" href="#!">Banjar Nungnung</a>
-                    <a class="btn btn-link" href="#!">Banjar Pelaga</a>
-                    <a class="btn btn-link" href="#!">Banjar Tiyingan</a>
+                    <a class="btn btn-link" href="#!">Banjar A</a>
+                    <a class="btn btn-link" href="#!">Banjar B</a>
+                    <a class="btn btn-link" href="#!">Banjar C</a>
+                    <a class="btn btn-link" href="#!">Banjar D</a>
+                    <a class="btn btn-link" href="#!">Banjar E</a>
                 </div>
             </div>
         </div>        
@@ -176,13 +166,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -30,13 +30,13 @@
         <div class="container py-5">
            
             <div class="text-center wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="mb-5">KARANG TARUNA </h1>
+                <h1 class="mb-5">Produk Hukum </h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="wow fadeIn" data-wow-delay="0.3s">
                         
-                       Karang Taruna
+                       Produk Hukum
                     </div>
                 </div>
             </div>
