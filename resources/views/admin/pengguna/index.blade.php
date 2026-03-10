@@ -41,9 +41,9 @@ Pengguna
                 <h4 class="card-title">Manajemen Pengguna</h4>
             </div>
             <div class="card-body">
-                <div class="row">
+                <!-- <div class="row">
                     <a href="{{ url('admin/pengguna/tambah') }}"><button class="btn btn-primary">Tambah Pengguna</button></a>
-                </div>
+                </div> -->
                 @if(session('success'))
                 <div class="row mt-2">
                     <div class="alert alert-dismissible alert-success fade show">
