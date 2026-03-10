@@ -344,7 +344,7 @@
                                 </div>
                             </div>
                             <!-- Role -->
-                             @can('admin-menu')
+                            @can('admin-menu')
                             <div data-simplebar style="max-height: 230px;">
                                 <a href="{{ url('admin') }}" class="text-reset notification-item">
                                     <div class="d-flex">
@@ -367,8 +367,15 @@
                                 </a>
                             </div>
                             <!-- End Role -->
-                            <div class="card-footer card-footer-bordered rounded-0 text-end"><a href="{{ url('keluar') }}"
-                                    class="btn btn-label-danger">Keluar</a></div>
+
+                            <div class="card-footer card-footer-bordered rounded-0 text-end">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-label-danger dropdown-item">
+                                        Keluar
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

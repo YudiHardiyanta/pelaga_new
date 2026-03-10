@@ -10,7 +10,7 @@ Route::get('/', function () {
 //Proses Login
 Route::get('/masuk', function () {return view('login'); });
 Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
-Route::get('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth')->name('logout');
+Route::post('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth')->name('logout');
 
 //tes Login
 Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');
@@ -31,6 +31,15 @@ Route::get('/admin/berita/edit/{id}',[App\Http\Controllers\BeritaController::cla
 Route::get('/admin/berita/list',[App\Http\Controllers\BeritaController::class, 'getByCreated'])->middleware('admin')->name('berita');
 
 
+//Menu Manajemen Jenis Surat
+Route::get('/admin/jenis-surat',[App\Http\Controllers\SuratController::class, 'jenisSuratPage'])->middleware('admin');
+Route::get('/admin/jenis-surat/tambah',[App\Http\Controllers\SuratController::class, 'addJenisSurat'])->middleware('admin');
+Route::post('/admin/jenis-surat',[App\Http\Controllers\SuratController::class, 'storeJenisSurat'])->middleware('admin');
+Route::get('/admin/jenis-surat/edit/{id}',[App\Http\Controllers\SuratController::class, 'editJenisSurat'])->middleware('admin');
+Route::post('/admin/jenis-surat/{id}',[App\Http\Controllers\SuratController::class, 'patchJenisSurat'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/jenis-surat/list',[App\Http\Controllers\SuratController::class, 'getJenisSurat'])->middleware('admin')->name('jenis-surat');
+
 
 //Menu Layanan Pengaduan
 Route::get('/admin/pengaduan',[App\Http\Controllers\PengaduanController::class, 'page'])->middleware('admin');
@@ -49,9 +58,15 @@ Route::get('/pkk', function () { return view('useri.pkk'); });
 Route::get('/taruna', function () { return view('useri.taruna'); });
 Route::get('/linmas', function () { return view('useri.linmas'); });
 
-//Menu di web
+
+//Menu Pengaduan di web
 Route::get('/pengaduan', function () { return view('web.pengaduan'); });
 Route::post('/pengaduan',[App\Http\Controllers\PengaduanController::class, 'store'])->name('add_pengaduan');
+
+
+//Menu Permohonan di web
+Route::get('/permohonan',function(){return view('web.permohonan');})->middleware('auth');
+Route::post('/permohonan',function(){return view('web.permohonan');})->middleware('auth');
 
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);

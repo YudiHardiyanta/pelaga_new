@@ -78,10 +78,11 @@
                             <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu bg-light mt-2">
                                 <a href="/profile" class="dropdown-item">Profile</a>
-
+                                @can('admin-menu')
+                                <a href="/admin" class="dropdown-item">Admin</a>
+                                @endcan
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item">

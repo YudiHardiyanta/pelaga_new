@@ -16,6 +16,18 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow ">
                         <i class="fa fa-file-alt"></i>
+                        <span>Administrasi</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('jenis-surat')
+                        <li><a href="{{ url('admin/jenis-surat') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Jenis Surat</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow ">
+                        <i class="fa fa-file-alt"></i>
                         <span>Manajemen Web</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

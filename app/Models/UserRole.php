@@ -13,7 +13,8 @@ class UserRole extends Model
         'berita',
         'galery',
         'ettd',
-        'users'
+        'users',
+        'jenis_surat'
     ];
 
     public function Roles() {
