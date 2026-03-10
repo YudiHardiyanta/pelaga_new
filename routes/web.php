@@ -26,6 +26,11 @@ Route::post('/admin/pengguna/{id}',[App\Http\Controllers\UserController::class, 
 //API untuk datatable
 Route::get('/admin/pengguna/list',[App\Http\Controllers\UserController::class, 'getUsers'])->middleware('admin')->name('pengguna');
 
+//Menu Manajemen Penduduk
+Route::get('/admin/penduduk',function(){return view('admin.penduduk.index');})->middleware('admin');
+Route::get('/admin/penduduk/import',[App\Http\Controllers\PendudukController::class, 'pageImport'])->middleware('admin');
+Route::post('/admin/penduduk/import',[App\Http\Controllers\PendudukController::class, 'doImport'])->middleware('admin');
+
 
 //Menu Manajemen Berita
 Route::get('/admin/berita',[App\Http\Controllers\BeritaController::class, 'page'])->middleware('admin');
@@ -54,6 +59,8 @@ Route::post('/admin/pengaduan/{id}',[App\Http\Controllers\PengaduanController::c
 //API untuk datatable
 Route::get('/admin/pengaduan/list',[App\Http\Controllers\PengaduanController::class, 'getDataTable'])->middleware('admin')->name('pengaduan');
 
+//Menu Layanan Permohonan
+Route::get('/admin/permohonan',[App\Http\Controllers\PengaduanController::class, 'page'])->middleware('admin');
 
 
 //Menu di Web
@@ -71,7 +78,7 @@ Route::post('/pengaduan',[App\Http\Controllers\PengaduanController::class, 'stor
 
 
 //Menu Permohonan di web
-Route::get('/permohonan',function(){return view('web.permohonan');})->middleware('auth');
+Route::get('/permohonan',[App\Http\Controllers\PermohonanController::class, 'webpage'])->middleware('auth');
 Route::post('/permohonan',function(){return view('web.permohonan');})->middleware('auth');
 
 

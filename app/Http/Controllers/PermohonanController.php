@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisSurat;
+use App\Models\Permohonan;
 use Illuminate\Http\Request;
 
 class PermohonanController extends Controller
 {
     //
+    public function page(Request $request)
+    {
+        return view('admin.permohonan.index');
+    }
+
+    public function webpage(Request $request){
+        $jenis_surat = JenisSurat::get();
+        return view('web.permohonan',[
+            'jenis_surat' => $jenis_surat
+        ]);
+    }
     public function store(Request $request)
     {
 
@@ -22,7 +35,7 @@ class PermohonanController extends Controller
 
 
         // ✅ SIMPAN KE DATABASE
-        Pengaduan::create([
+        Permohonan::create([
             'pengaduan_nama' => $request->nama,
             'pengaduan_email' => $request->email,
             'pengaduan_telepon' => $request->telepon,

@@ -93,14 +93,9 @@
                                 <div class="form-floating">
                                     <select name="jenis" id="jenis" class="form-control">
                                         <option value="">-- Pilih Surat --</option>
-                                        <option value="1">Surat Keterangan Domisili</option>
-                                        <option value="2">Surat Keterangan Usaha</option>
-                                        <option value="3">Surat Pengantar Pembuatan KTP</option>
-                                        <option value="4">Surat Permohonan KK Baru </option>
-                                        <option value="">Surat Keterangan Tidak Mampu</option>
-                                        <option value="">Surat Keterangan Tempat Usaha</option>
-                                        <option value="">Surat Pernyataan Perubahan Biodata</option>
-                                        <option value="">Surat Keterangan Kelahiran</option>
+                                        @foreach($jenis_surat as $sr)
+                                        <option value="{{$sr->id}}">{{$sr->nama_surat}}</option>
+                                        @endforeach
                                     </select>
                                     <label for="subject">Jenis Surat</label>
                                     @error('subject')
