@@ -8,13 +8,8 @@ class UserRole extends Model
 {
     //
     protected $fillable = [
-        'name',
-        'admin',
-        'berita',
-        'galery',
-        'ettd',
-        'users',
-        'jenis_surat'
+        'nik',
+        'role_id'
     ];
 
     public function Roles() {

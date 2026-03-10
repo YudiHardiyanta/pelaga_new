@@ -50,7 +50,10 @@ class User extends Authenticatable
         ];
     }
 
-    public function UserRoles(){
-        return $this->hasOne(UserRole::class, 'nik','nik');
+    public function UserRoles()
+    {
+        return $this->hasOne(UserRole::class, 'nik', 'nik');
     }
+
+    
 }

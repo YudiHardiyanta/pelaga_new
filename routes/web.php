@@ -18,7 +18,13 @@ Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middlewar
 
 //Menu di Admin
 Route::get('/admin',function(){return view('admin.index');})->middleware('admin');
-Route::get('/admin/pengguna',function(){return view('admin.pengguna');})->middleware('admin');
+
+//Menu Manajemen Pengguna
+Route::get('/admin/pengguna',function(){return view('admin.pengguna.index');})->middleware('admin');
+Route::get('/admin/pengguna/edit/{id}',[App\Http\Controllers\UserController::class, 'edit'])->middleware('admin');
+Route::post('/admin/pengguna/{id}',[App\Http\Controllers\UserController::class, 'patchRole'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/pengguna/list',[App\Http\Controllers\UserController::class, 'getUsers'])->middleware('admin')->name('pengguna');
 
 
 //Menu Manajemen Berita
