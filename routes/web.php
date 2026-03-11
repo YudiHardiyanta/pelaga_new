@@ -28,6 +28,9 @@ Route::get('/admin/banjar/edit/{id}',[App\Http\Controllers\BanjarController::cla
 //API untuk datatable
 Route::get('/admin/banjar/list',[App\Http\Controllers\BanjarController::class, 'getByCreated'])->middleware('admin')->name('banjar');
 
+//Menu Manajemen Role
+Route::get('/admin/role',function(){return view('admin.role.index');})->middleware('admin');
+
 //Menu Manajemen Pengguna
 Route::get('/admin/pengguna',function(){return view('admin.pengguna.index');})->middleware('admin');
 Route::get('/admin/pengguna/edit/{id}',[App\Http\Controllers\UserController::class, 'edit'])->middleware('admin');

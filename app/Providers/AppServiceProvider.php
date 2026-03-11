@@ -43,5 +43,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('banjar-config', function ($user) {
             return $user->UserRoles->Roles->banjar;
         });
+        Gate::define('role-config', function ($user) {
+            return $user->UserRoles->Roles->role;
+        });
     }
 }

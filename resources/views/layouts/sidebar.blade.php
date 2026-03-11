@@ -35,6 +35,10 @@
                         <li><a href="{{ url('admin/banjar') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>Banjar</a></li>
                         @endcan
+                        @can('role-config')
+                        <li><a href="{{ url('admin/role') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Role</a></li>
+                        @endcan
                         @can('user-config')
                         <li><a href="{{ url('admin/pengguna') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>Pengguna</a></li>

@@ -12,9 +12,9 @@
     <meta name="email" content="support@shreethemes.in" />
     <meta name="version" content="1.2.0" />
     <!-- favicon -->
-     
+
     <link href="resources/images/favicon.ico" rel="shortcut icon">
-    
+
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="resources/css/style.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    
+
     <!-- Hero Start -->
     <section class="cover-user bg-white">
         <div class="container-fluid px-0">
@@ -62,8 +62,17 @@
                                                                 <label class="form-label">Masukan Nomor Kartu Keluarga <span class="text-danger">*</span></label>
                                                                 <input type="password" class="form-control" placeholder="Nomor Kartu Keluarga" name="password" required="">
                                                             </div>
-                                                        </div><!--end col-->
-                                                       <!-- <div class="col-lg-12">
+                                                        </div>
+
+                                                        {!! NoCaptcha::display() !!}
+
+                                                        @if ($errors->has('g-recaptcha-response'))
+                                                        <span class="text-danger">
+                                                            {{ $errors->first('g-recaptcha-response') }}
+                                                        </span>
+                                                        @endif
+                                                        <!--end col-->
+                                                        <!-- <div class="col-lg-12">
                                                             <div class="mb-3">
                                                                 <div class="g-recaptcha form-control" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
                                                             </div>
@@ -74,12 +83,12 @@
                                                             <div class="d-flex justify-content-between">
                                                                 <div class="mb-3">
                                                                     <div class="form-check">-->
-                                                                        <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                         <label class="form-check-label" for="flexCheckDefault">Remember me</label> -->
-                                                                    <!--</div>
+                                                        <!--</div>
                                                                 </div>-->
-                                                                <!-- <p class="forgot-pass mb-0"><a href="auth-reset-password.html" class="text-dark">Forgot password ?</a></p> -->
-                                                            <!--</div>
+                                                        <!-- <p class="forgot-pass mb-0"><a href="auth-reset-password.html" class="text-dark">Forgot password ?</a></p> -->
+                                                        <!--</div>
                                                         </div>end col-->
 
                                                         <div class="col-lg-12 mb-0">
@@ -132,16 +141,15 @@
                 <li><a href="https://1.envato.market/motos" target="_blank" class="btn btn-sm btn-block btn-warning mt-2 w-100">Download</a></li>
             </ul>
         </div>
-        
+
     </div>
     <!-- end Style switcher -->
-
+    {!! NoCaptcha::renderJs() !!}
     <!-- javascript -->
-     <script src="resources/js/bootstrap.bundle.min.js"></script>
-     <script src="resources/js/feather.min.js"></script>
-     <script src="resources/js/plugins.init.js"></script>
-     <script src="resources/js/app.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="resources/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/feather.min.js"></script>
+    <script src="resources/js/plugins.init.js"></script>
+    <script src="resources/js/app.js"></script>
 </body>
 
 </html>

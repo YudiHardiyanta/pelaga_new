@@ -14,7 +14,14 @@ class UserController extends Controller
     //
     public function auth(Request $request)
     {
+        $request->validate([
+            'nik' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+        
         $credentials = $request->only('nik', 'password');
+
 
         if (!Auth::attempt($credentials)) {
             return response()->json([
