@@ -30,6 +30,13 @@ Route::get('/admin/banjar/list',[App\Http\Controllers\BanjarController::class, '
 
 //Menu Manajemen Role
 Route::get('/admin/role',function(){return view('admin.role.index');})->middleware('admin');
+Route::get('/admin/role/tambah',[App\Http\Controllers\RoleController::class, 'add'])->middleware('admin');
+Route::post('/admin/role',[App\Http\Controllers\RoleController::class, 'store'])->middleware('admin');
+Route::get('/admin/role/edit/{id}',[App\Http\Controllers\RoleController::class, 'edit'])->middleware('admin');
+Route::post('/admin/role/{id}',[App\Http\Controllers\RoleController::class, 'patch'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/role/list',[App\Http\Controllers\RoleController::class, 'getByCreated'])->middleware('admin')->name('role');
+
 
 //Menu Manajemen Pengguna
 Route::get('/admin/pengguna',function(){return view('admin.pengguna.index');})->middleware('admin');

@@ -59,12 +59,7 @@ Role
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Judul</th>
-                                        <th>Jenis</th>
-                                        <th>Deskripsi Singkat</th>
-                                        <th>Tanggal</th>
-                                        <th>Penerbit</th>
-                                        <th>Status</th>
+                                        <th>Role</th>
                                         <th class="text-end">Aksi</th>
                                     </tr>
                                 </thead>
@@ -102,7 +97,35 @@ Role
 
 <!-- Datatable init js -->
 <script>
-    
+    $('#role').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('role') }}",
+        columns: [{
+                data: 'name',
+                name: 'name',
+            },
+            
+            {
+                data: 'id',
+                name: 'id',
+                render: function(data, type, row) {
+                    return '<a href="/admin/role/edit/' + data + '" class="btn btn-primary btn-sm">Edit</a>';
+                },
+                orderable: false,
+                searchable: false
+            },
+        ],
+        "language": {
+            "paginate": {
+                "previous": "<i class='mdi mdi-chevron-left'>",
+                "next": "<i class='mdi mdi-chevron-right'>"
+            }
+        },
+        "drawCallback": function() {
+            $('.dataTables_paginate > .pagination').addClass('pagination');
+        }
+    });
 </script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
