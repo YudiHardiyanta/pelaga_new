@@ -31,6 +31,10 @@
                         <span>Manajemen Web</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('banjar-config')
+                        <li><a href="{{ url('admin/banjar') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Banjar</a></li>
+                        @endcan
                         @can('user-config')
                         <li><a href="{{ url('admin/pengguna') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>Pengguna</a></li>

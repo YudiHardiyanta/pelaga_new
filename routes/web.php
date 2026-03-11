@@ -19,6 +19,15 @@ Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middlewar
 //Menu di Admin
 Route::get('/admin',function(){return view('admin.index');})->middleware('admin');
 
+
+//Menu Manajemen Banjar
+Route::get('/admin/banjar',function(){return view('admin.banjar.index');})->middleware('admin');
+Route::get('/admin/banjar/tambah',[App\Http\Controllers\BanjarController::class, 'add'])->middleware('admin');
+Route::post('/admin/banjar',[App\Http\Controllers\BanjarController::class, 'store'])->middleware('admin');
+Route::get('/admin/banjar/edit/{id}',[App\Http\Controllers\BanjarController::class, 'edit'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/banjar/list',[App\Http\Controllers\BanjarController::class, 'getByCreated'])->middleware('admin')->name('banjar');
+
 //Menu Manajemen Pengguna
 Route::get('/admin/pengguna',function(){return view('admin.pengguna.index');})->middleware('admin');
 Route::get('/admin/pengguna/edit/{id}',[App\Http\Controllers\UserController::class, 'edit'])->middleware('admin');
