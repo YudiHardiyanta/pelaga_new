@@ -12,13 +12,13 @@
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
                 <div>
-                    <h4 class="fs-16 fw-semibold mb-1 mb-md-2">Good Morning, <span class="text-primary">Jonas!</span></h4>
-                    <p class="text-muted mb-0">Here's what's happening with your store today.</p>
+                    <h4 class="fs-16 fw-semibold mb-1 mb-md-2">Selamat Datang, <span class="text-primary">{{auth()->user()->name;}}</span></h4>
+                    <p class="text-muted mb-0">Selamat Datang di Menu Admin Manajemen Website Desa Pelaga.</p>
                 </div>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Clivax</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+                        <li class="breadcrumb-item"><a href="/">Lihat Website</a></li>
                     </ol>
                 </div>
             </div>

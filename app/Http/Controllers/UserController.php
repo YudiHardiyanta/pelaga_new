@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banjar;
+use App\Models\Penduduk;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
@@ -19,7 +21,7 @@ class UserController extends Controller
             'password' => 'required',
             'g-recaptcha-response' => 'required|captcha'
         ]);
-        
+
         $credentials = $request->only('nik', 'password');
 
 
@@ -84,6 +86,16 @@ class UserController extends Controller
             'role_id' => $request->role,
         ]);
         return redirect('/admin/pengguna')->with('success', 'Update Role Berhasil berhasil diedit');
+    }
+
+    public function getAdminUserInfo(Request $request){
+        $user = Auth::user();
+        $user_detail = Penduduk::where('nik','=',$user->nik)->join('banjars', 'penduduks.banjar_id', '=', 'banjars.id')->first();
+        $keluarga = Penduduk::where('penduduks.kk','=',$user->kk)->join('users','penduduks.nik','=','users.nik')->select('users.kk','users.jk','users.name','penduduks.*')->get();
+        return view('admin.profil',[
+            'user_detail' => $user_detail,
+            'keluarga' => $keluarga,
+        ]);
     }
 
     public function tes(Request $request)

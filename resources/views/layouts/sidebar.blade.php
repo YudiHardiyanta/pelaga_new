@@ -8,7 +8,7 @@
             <!-- Left Menu Start -->
             <ul class="left-menu list-unstyled" id="side-menu">
                 <li>
-                    <a href="{{ url('profil') }}" class="">
+                    <a href="{{ url('admin/profil') }}" class="">
                         <i class="fas fa-user"></i>
                         <span>Profil</span>
                     </a>

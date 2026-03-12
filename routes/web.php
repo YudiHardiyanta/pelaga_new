@@ -18,6 +18,7 @@ Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middlewar
 
 //Menu di Admin
 Route::get('/admin',function(){return view('admin.index');})->middleware('admin');
+Route::get('/admin/profil',[App\Http\Controllers\UserController::class, 'getAdminUserInfo'])->middleware('admin');
 
 
 //Menu Manajemen Banjar
@@ -36,6 +37,9 @@ Route::get('/admin/role/edit/{id}',[App\Http\Controllers\RoleController::class, 
 Route::post('/admin/role/{id}',[App\Http\Controllers\RoleController::class, 'patch'])->middleware('admin');
 //API untuk datatable
 Route::get('/admin/role/list',[App\Http\Controllers\RoleController::class, 'getByCreated'])->middleware('admin')->name('role');
+
+
+//Menu Manajemen Galery
 
 
 //Menu Manajemen Pengguna
