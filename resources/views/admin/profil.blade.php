@@ -1,17 +1,30 @@
-@extends('layouts.master')
+@extends('layouts.master-without-page-title')
 
 @section('title')
 Profil Pengguna
 @endsection
 
-@section('topbar-title')
-Apps
-@endsection
+
 
 @section('css')
 @endsection
 
 @section('content')
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div>
+                <h4 class="fs-16 fw-semibold mb-1 mb-md-2">Profil, <span class="text-primary">{{auth()->user()->name;}}</span></h4>
+            </div>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+                    <li class="breadcrumb-item active">Profil</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-xl-4">
         <div class="card overflow-hidden">
