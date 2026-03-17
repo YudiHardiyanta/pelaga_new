@@ -59,7 +59,7 @@
                         <a href="/" class="nav-item nav-link active">Beranda</a>
                         <a href="/permohonan" class="nav-item nav-link">Permohonan</a>
                         <a href="/pengaduan" class="nav-item nav-link">Pengaduan</a>
-                        <a href="/terbaru" class="nav-item nav-link">Berita</a>
+                        <a href="#berita" class="nav-item nav-link">Berita</a>
                         <a href="/jdih" class="nav-item nav-link">Peraturan</a>
                         <div class="nav-item dropdown">
                             <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang</a>

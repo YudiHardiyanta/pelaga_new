@@ -203,7 +203,7 @@
 
 <!-- Service Start -->
  @if($berita)
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" id="berita">
     <div class="container">
         <div class="text-center mb-5">
             <h1 class="mb-5">Berita Terbaru</h1>
