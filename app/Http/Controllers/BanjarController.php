@@ -51,4 +51,21 @@ class BanjarController extends Controller
             'banjar' => $banjar,
         ]);
     }
+
+    public function patch(Request $request,$id){
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'min:3'],
+            'nik_kelian' => ['required', 'string', 'min:16', 'max:16'],
+        ]);
+        $banjar = Banjar::with('user:nik,name')->findOrFail($id);
+        $banjar->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'nik_kelian' => $request->nik_kelian,
+        ]);
+        return redirect('/admin/banjar')->with('success', 'Banjar berhasil diedit');
+
+
+    }
 }

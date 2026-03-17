@@ -30,8 +30,12 @@ Route::get('/admin/banjar',function(){return view('admin.banjar.index');})->midd
 Route::get('/admin/banjar/tambah',[App\Http\Controllers\BanjarController::class, 'add'])->middleware('admin');
 Route::post('/admin/banjar',[App\Http\Controllers\BanjarController::class, 'store'])->middleware('admin');
 Route::get('/admin/banjar/edit/{id}',[App\Http\Controllers\BanjarController::class, 'edit'])->middleware('admin');
+Route::post('/admin/banjar/{id}',[App\Http\Controllers\BanjarController::class, 'patch'])->middleware('admin');
+
 //API untuk datatable
 Route::get('/admin/banjar/list',[App\Http\Controllers\BanjarController::class, 'getByCreated'])->middleware('admin')->name('banjar');
+//Autocomplete Banjar
+Route::get('/admin/nik-search',[App\Http\Controllers\UserController::class, 'autocomplete']);
 
 //Menu Manajemen Role
 Route::get('/admin/role',function(){return view('admin.role.index');})->middleware('admin');
