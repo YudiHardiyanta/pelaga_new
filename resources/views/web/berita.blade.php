@@ -1,19 +1,49 @@
-<div class="row g-4">
-    @foreach($berita as $b)
-    <!-- Card 1 -->
-    <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm border-2 border-primary">
-            <img src="{{ asset('storage/berita/'.$b->berita_foto) }}" class="card-img-top" alt="">
-            <div class="card-body">
-                <h4 class="card-title">{{$b->berita_title}}</h4>
-                <p class="card-text">{!!$b->berita_content!!}</p>
-                <a href="#">Lanjutkan...</a>
+@extends('useri.user')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
+    <!-- Hero Start -->
+    <div class="container-fluid pb-5 bg-primary hero-header">
+        <div class="container py-5">
+            <div class="row g-3 align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="display-1 mb-0 animated slideInLeft">Berita</h1>
+                </div>
+                <div class="col-lg-6 animated slideInRight">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
+                            <li class="breadcrumb-item"><a class="text-primary" href="/">Beranda</a></li>
+                            <li class="breadcrumb-item text-secondary active" aria-current="page">Berita</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
-    @endforeach
-    <div>
-        <button class="btn btn-primary text-center">Lihat Berita Lainnya</button>
-    </div>
+    <!-- Hero End -->
 
-</div>
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+           
+            <div class="text-center wow fadeIn" data-wow-delay="0.1s">
+                <h1 class="mb-5">{{$berita->berita_title}}</h1>
+                <h5>{{$berita->user->name}}</h5>
+                <h6>Dibuat Pada : {{\Carbon\Carbon::parse($berita->created_at)->locale('id')->translatedFormat('j F Y H:i')}}</h6>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="wow fadeIn" data-wow-delay="0.3s">
+                        <img src="{{ asset('storage/berita/'.$berita->berita_foto) }}" alt="" class="img-fluid">
+                        <br><br>
+                       <p>{!!$berita->berita_content!!}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+ @endsection

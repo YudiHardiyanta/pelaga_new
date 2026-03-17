@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('web.index');
-});
+Route::get('/', [App\Http\Controllers\WebController::class,'home']);
 
 //Tes
 Route::get('/tes_surat',function(){return view('tes.index');});
@@ -100,6 +98,7 @@ Route::get('/bpd', function () { return view('useri.bpd'); });
 Route::get('/pkk', function () { return view('useri.pkk'); });
 Route::get('/taruna', function () { return view('useri.taruna'); });
 Route::get('/linmas', function () { return view('useri.linmas'); });
+Route::get('/berita/{id}', [App\Http\Controllers\WebController::class, 'berita']);
 
 
 //Menu Pengaduan di web
