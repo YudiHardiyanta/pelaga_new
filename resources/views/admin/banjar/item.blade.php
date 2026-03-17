@@ -5,6 +5,7 @@ Banjar
 @endsection
 
 @section('css')
+<link href="{{ URL::asset('build/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -77,12 +78,20 @@ Banjar
 
                         <div class="row mb-4 align-items-center">
                             <div class="col-lg-3">
-                                <label for="nik_kelian" class="fw-semibold">NIK Kelian </label>
+                                <label for="nik_kelian" class="fw-semibold">Nama atau NIK Kelian </label>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group">
-                                    <div class="input-group-text"><i class="bi bi-type-h1"></i></div>
-                                    <input type="text" class="form-control @error('nik_kelian') is-invalid @enderror" id="nik_kelian" name="nik_kelian" placeholder="NIK Kelian" value="{{ old('nama', $banjar->nik_kelian ?? '') }}">
+                                    <div class="col-sm-5 col-lg-6">
+                                        <div class="mb-2">
+                                            <select id="select2-2" name="nik_kelian">
+                                                @if($mode='Edit')
+                                                    <option value="{{$banjar->user->nik}}">{{$banjar->user->name}}</option>
+                                                @endif()
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     @error('nik_kelian')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -93,7 +102,7 @@ Banjar
 
 
                         </div>
-                        
+
                         <div class="d-flex gap-3 mt-3 justify-content-end">
                             <button type="submit" class="btn btn-primary px-4">
                                 Simpan
@@ -117,6 +126,29 @@ Banjar
 @section('scripts')
 <!-- apexcharts -->
 <!-- Required datatable js -->
+<script src="{{ URL::asset('build/libs/select2/dist/js/select2.min.js') }}"></script>
+
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/dashboard.init.js') }}"></script>
+
+<script>
+    
+
+    $('#select2-2').select2({
+        minimumInputLength: 3,
+        ajax: {
+            url: '/admin/nik-search',
+            data: function(params) {
+                var query = {
+                    q: params.term,
+                }
+
+                // Query parameters will be ?search=[term]&type=public
+                return query;
+            }
+        }
+    });
+</script>
+
+
 @endsection

@@ -53,11 +53,13 @@ class BanjarController extends Controller
     }
 
     public function patch(Request $request,$id){
+        
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'min:3'],
             'nik_kelian' => ['required', 'string', 'min:16', 'max:16'],
         ]);
+        
         $banjar = Banjar::with('user:nik,name')->findOrFail($id);
         $banjar->update([
             'nama' => $request->nama,

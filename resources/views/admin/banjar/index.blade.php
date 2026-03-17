@@ -60,7 +60,7 @@ Banjar
                                 <thead>
                                     <tr>
                                         <th>Nama Banjar</th>
-                                        <th>ALamat</th>
+                                        <th>Alamat</th>
                                         <th>Nama Kelian Banjar</th>
                                         <th class="text-end">Aksi</th>
                                     </tr>

@@ -161,6 +161,28 @@ class UserController extends Controller
         ]);
     }
 
+    public function autocomplete(Request $request)
+    {
+        $search = $request->q;
+
+        $users = User::where('name', 'LIKE', "%{$search}%")
+            ->orWhere('nik', 'LIKE', "%{$search}%")
+            ->select('nik','name')
+            ->limit(10)
+            ->get();
+
+
+        return response()->json([
+            'results' => $users->map(function ($user) {
+                return [
+                    'id' => $user->nik,
+                    'text' => $user->name,
+
+                ];
+            })
+        ]);
+    }
+
     public function tes(Request $request)
     {
         return Auth::user()->UserRoles->Roles;

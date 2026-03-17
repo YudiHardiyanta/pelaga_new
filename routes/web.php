@@ -35,7 +35,7 @@ Route::post('/admin/banjar/{id}',[App\Http\Controllers\BanjarController::class, 
 //API untuk datatable
 Route::get('/admin/banjar/list',[App\Http\Controllers\BanjarController::class, 'getByCreated'])->middleware('admin')->name('banjar');
 //Autocomplete Banjar
-Route::get('/admin/nik-search',[App\Http\Controllers\UserController::class, 'autocomplete']);
+Route::get('/admin/nik-search',[App\Http\Controllers\UserController::class, 'autocomplete'])->middleware('admin');
 
 //Menu Manajemen Role
 Route::get('/admin/role',function(){return view('admin.role.index');})->middleware('admin');
