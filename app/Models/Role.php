@@ -14,7 +14,10 @@ class Role extends Model
         'galery',
         'ettd',
         'users',
-        'jenis_surat'
+        'jenis_surat',
+        'role',
+        'penduduk',
+        'penduduk_all'
     ];
 
     

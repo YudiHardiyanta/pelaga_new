@@ -34,7 +34,8 @@ class RoleController extends Controller
             'users' => $request->users=="on",
             'banjar' => $request->banjar=="on",
             'role' => $request->role=="on",
-
+            'penduduk' => $request->penduduk=="on",
+            'penduduk_all' => $request->penduduk_all=="on"
         ]);
 
         // ✅ REDIRECT DENGAN PESAN SUKSES
@@ -76,6 +77,8 @@ class RoleController extends Controller
             'users' => $request->users=="on",
             'banjar' => $request->banjar=="on",
             'role' => $request->role=="on",
+            'penduduk' => $request->penduduk=="on",
+            'penduduk_all' => $request->penduduk_all=="on"
 
         ]);
 

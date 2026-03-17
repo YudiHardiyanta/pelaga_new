@@ -232,6 +232,50 @@ Role
 
                         </div>
 
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-lg-3">
+                                <label for="status" class="fw-semibold">Penduduk: </label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault" name="penduduk" {{ $mode=='Edit' && $role->penduduk ? 'checked="checked"' : ''}}  /> <label class="form-check-label"
+                                            for="flexSwitchCheckDefault" ></label>
+                                    </div>
+                                    @error('penduduk')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-lg-3">
+                                <label for="status" class="fw-semibold">Manajemen Semua Penduduk: </label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault" name="penduduk_all" {{ $mode=='Edit' && $role->penduduk_all ? 'checked="checked"' : ''}}  /> <label class="form-check-label"
+                                            for="flexSwitchCheckDefault" ></label>
+                                    </div>
+                                    @error('penduduk_all')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                        </div>
+
                         <div class="d-flex gap-3 mt-3 justify-content-end">
                             <button type="submit" class="btn btn-primary px-4">
                                 Simpan
