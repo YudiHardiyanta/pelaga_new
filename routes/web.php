@@ -7,10 +7,16 @@ Route::get('/', function () {
     return view('web.index');
 });
 
+//Tes
+Route::get('/tes_surat',function(){return view('tes.index');});
+
+
 //Proses Login
-Route::get('/masuk', function () {return view('login'); });
+Route::get('/masuk',[App\Http\Controllers\UserController::class,'pageLogin']);
 Route::post('/auth',[App\Http\Controllers\UserController::class,'auth']);
 Route::post('/keluar',[App\Http\Controllers\UserController::class,'logout'])->middleware('auth')->name('logout');
+Route::get('/profile',[App\Http\Controllers\UserController::class,'pageProfile'])->middleware('auth');
+Route::post('/reset-password',[App\Http\Controllers\UserController::class,'resetPassword'])->middleware('auth');
 
 //tes Login
 Route::get('/tes',[App\Http\Controllers\UserController::class,'tes'])->middleware('auth');
@@ -53,6 +59,7 @@ Route::get('/admin/pengguna/list',[App\Http\Controllers\UserController::class, '
 Route::get('/admin/penduduk',function(){return view('admin.penduduk.index');})->middleware('admin');
 Route::get('/admin/penduduk/import',[App\Http\Controllers\PendudukController::class, 'pageImport'])->middleware('admin');
 Route::post('/admin/penduduk/import',[App\Http\Controllers\PendudukController::class, 'doImport'])->middleware('admin');
+Route::get('/admin/penduduk/list',[App\Http\Controllers\PendudukController::class, 'getByCreated'])->middleware('admin')->name('penduduk');
 
 
 //Menu Manajemen Berita
