@@ -59,13 +59,21 @@ Penduduk
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Judul</th>
-                                        <th>Jenis</th>
-                                        <th>Deskripsi Singkat</th>
-                                        <th>Tanggal</th>
-                                        <th>Penerbit</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Aksi</th>
+                                        <th>Nama</th>
+                                        <th>NIK</th>
+                                        <th>KK</th>
+                                        <th>Alamat</th>
+                                        <th>Tempat Lahir</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Agama</th>
+                                        <th>Pendidikan</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Golongan Darah</th>
+                                        <th>Status Perkawinan</th>
+                                        <th>Tanggal Perkawinan</th>
+                                        <th>Status Dalam Hubungan Keluarga</th>
+                                        <th>Kewarganegaraan</th>
+                                        <th>Banjar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,9 +108,91 @@ Penduduk
 <script src="{{ URL::asset('build/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
 
-<!-- Datatable init js -->
 <script>
-    
+    $('#penduduk').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('penduduk') }}",
+        columns: [
+            {
+                data: 'name',
+                name: 'users.name',
+            },
+            {
+                data: 'nik',
+                name: 'users.nik',
+            },
+            {
+                data: 'kk',
+                name: 'users.kk',
+            },
+            {
+                data: 'alamat',
+                name: 'penduduks.alamat',
+            },
+            {
+                data: 'tempat_lahir',
+                name: 'penduduks.tempat_lahir',
+            },
+            {
+                data: 'tanggal_lahir',
+                name: 'penduduks.tanggal_lahir',
+                render: function(data) {
+                    let date = new Date(data);
+                    return date.toLocaleDateString('id-ID');
+                }
+            },
+            {
+                data: 'agama',
+                name: 'penduduks.agama'
+            },
+            {
+                data: 'pendidikan',
+                name: 'penduduks.pendidikan'
+            },
+            {
+                data: 'pekerjaan',
+                name: 'penduduks.pekerjaan'
+            },
+            {
+                data: 'gol_darah',
+                name: 'penduduks.gol_darah'
+            },
+            {
+                data: 'status_perkawinan',
+                name: 'penduduks.status_perkawinan'
+            },
+            {
+                data: 'tanggal_perkawinan',
+                name: 'penduduks.tanggal_perkawinan',
+                render: function(data) {
+                    let date = new Date(data);
+                    return date.toLocaleDateString('id-ID');
+                }
+            },
+            {
+                data: 'status_dalam_hubungan_keluarga',
+                name: 'penduduks.status_dalam_hubungan_keluarga'
+            },
+            {
+                data: 'kewarganegaraan',
+                name: 'penduduks.kewarganegaraan'
+            },
+            {
+                data: 'banjar',
+                name: 'banjars.nama'
+            },
+        ],
+        "language": {
+            "paginate": {
+                "previous": "<i class='mdi mdi-chevron-left'>",
+                "next": "<i class='mdi mdi-chevron-right'>"
+            }
+        },
+        "drawCallback": function() {
+            $('.dataTables_paginate > .pagination').addClass('pagination');
+        }
+    });
 </script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

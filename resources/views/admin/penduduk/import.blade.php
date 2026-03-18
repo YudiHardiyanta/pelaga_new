@@ -48,6 +48,28 @@ Import
                         @csrf
                         <div class="row mb-4 align-items-center">
                             <div class="col-lg-3">
+                                <label class="fw-semibold">Pilih Banjar: </label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <select class="form-control @error('banjar') is-invalid @enderror" data-select2-selector="country" name="banjar">
+                                        <option value="">Pilih Banjar</option>
+                                        @foreach($banjar as $bj)
+                                        <option value="{{$bj->id}}">
+                                            {{$bj->nama}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('banjar')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-lg-3">
                                 <label class="fw-semibold">Pilih File Excel: </label>
                             </div>
                             <div class="col-lg-9">
@@ -55,11 +77,16 @@ Import
                                     <div class="input-group">
                                         <div class="input-group-text"><i class="bi bi-images"></i></div>
                                         <input type="file"
-                                            class="form-control"
+                                            class="form-control @error('excel') is-invalid @enderror"
                                             id="excel"
                                             name="excel"
                                             accept=".xls,.xlsx">
                                         <a href="/template/import_penduduk.xlsx" class="btn btn-primary">Unduh Template</a>
+                                        @error('excel')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
