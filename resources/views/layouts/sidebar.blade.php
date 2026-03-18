@@ -39,6 +39,10 @@
                         <li><a href="{{ url('admin/role') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>Role</a></li>
                         @endcan
+                        @can('penduduk-config')
+                        <li><a href="{{ url('admin/penduduk') }}"><i
+                                    class="mdi mdi-checkbox-blank-circle align-middle"></i>Penduduk</a></li>
+                        @endcan
                         @can('user-config')
                         <li><a href="{{ url('admin/pengguna') }}"><i
                                     class="mdi mdi-checkbox-blank-circle align-middle"></i>Pengguna</a></li>

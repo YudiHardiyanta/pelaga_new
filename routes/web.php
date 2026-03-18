@@ -74,6 +74,11 @@ Route::get('/admin/berita/edit/{id}',[App\Http\Controllers\BeritaController::cla
 Route::get('/admin/berita/list',[App\Http\Controllers\BeritaController::class, 'getByCreated'])->middleware('admin')->name('berita');
 
 
+//Menu Manajemen Galery
+Route::get('/admin/galery',[App\Http\Controllers\GaleryController::class, 'page'])->middleware('admin');
+Route::post('/admin/galery/upload', [App\Http\Controllers\GaleryController::class, 'store'])->middleware('admin')->name('galery.upload');
+Route::delete('admin/galery/{id}', [App\Http\Controllers\GaleryController::class, 'delete'])->middleware('admin')->name('galery.delete');
+
 //Menu Manajemen Jenis Surat
 Route::get('/admin/jenis-surat',[App\Http\Controllers\SuratController::class, 'jenisSuratPage'])->middleware('admin');
 Route::get('/admin/jenis-surat/tambah',[App\Http\Controllers\SuratController::class, 'addJenisSurat'])->middleware('admin');
