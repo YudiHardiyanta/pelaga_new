@@ -108,6 +108,7 @@ Route::get('/pkk', function () { return view('useri.pkk'); });
 Route::get('/taruna', function () { return view('useri.taruna'); });
 Route::get('/linmas', function () { return view('useri.linmas'); });
 Route::get('/berita/{id}', [App\Http\Controllers\WebController::class, 'berita']);
+Route::get('/galery/{kegiatan}', [App\Http\Controllers\GaleryController::class, 'galery']);
 
 
 //Menu Pengaduan di web

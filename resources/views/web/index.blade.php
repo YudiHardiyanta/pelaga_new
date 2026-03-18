@@ -4,6 +4,14 @@
 
 @section('content')
 
+<style>
+    .gallery-img {
+        height: 250px;
+        /* 🔥 samakan tinggi */
+        object-fit: cover;
+        /* 🔥 crop otomatis */
+    }
+</style>
 
 <!-- Hero Start -->
 <div class="container-fluid pb-5 hero-header bg-light mb-5">
@@ -129,7 +137,7 @@
 
 
 <!-- Project Start -->
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5" id="galery">
     <div class="container mt-5">
         <div class="row g-0">
             <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
@@ -140,60 +148,17 @@
             </div>
             <div class="col-lg-7">
                 <div class="row g-0">
+                    @foreach($galery as $g)
                     <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s">
                         <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">Desa</h4>
-                                <small class="text-white">72 Projects</small>
+                            <img class="img-fluid w-100 gallery-img" src="{{ asset('storage/galery/'.$g->last_image) }}" alt="">
+                            <a class="project-overlay text-decoration-none" href="{{$g->kegiatan? '/galery/'.$g->kegiatan : '#'}}">
+                                <h4 class="text-white">{{$g->kegiatan?$g->kegiatan : 'Desa Pelaga'}}</h4>
+                                <small class="text-white">{{$g->total}} Gambar</small>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                        <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">BPD</h4>
-                                <small class="text-white">67 Projects</small>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.4s">
-                        <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">PKK</h4>
-                                <small class="text-white">53 Projects</small>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">Karang Taruna</h4>
-                                <small class="text-white">33 Projects</small>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.6s">
-                        <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">Linmas</h4>
-                                <small class="text-white">87 Projects</small>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.7s">
-                        <div class="project-item position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/logo-icon.png" alt="">
-                            <a class="project-overlay text-decoration-none" href="#!">
-                                <h4 class="text-white">Ceremony</h4>
-                                <small class="text-white">69 Projects</small>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach()
                 </div>
             </div>
         </div>
@@ -202,7 +167,7 @@
 <!-- Project End -->
 
 <!-- Service Start -->
- @if($berita)
+@if($berita)
 <div class="container-fluid py-5" id="berita">
     <div class="container">
         <div class="text-center mb-5">

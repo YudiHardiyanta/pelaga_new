@@ -44,5 +44,13 @@ class GaleryController extends Controller
         return redirect('admin/galery');
     }
 
+    public function galery(Request $request, $kegiatan){
+        $galleries = Gallery::where('status',1)->where('kegiatan','=',$kegiatan)->latest()->paginate(10);
+        return view('web.galery',[
+            'kegiatan' => ucfirst($kegiatan),
+            'galleries' => $galleries
+        ]);
+    }
+
     
 }
