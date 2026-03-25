@@ -85,7 +85,7 @@ Banjar
                                     <div class="col-sm-5 col-lg-6">
                                         <div class="mb-2">
                                             <select id="select2-2" name="nik_kelian">
-                                                @if($mode='Edit')
+                                                @if($mode=='Edit')
                                                     <option value="{{$banjar->user->nik}}">{{$banjar->user->name}}</option>
                                                 @endif
                                             </select>
