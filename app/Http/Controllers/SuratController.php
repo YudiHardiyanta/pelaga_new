@@ -87,11 +87,42 @@ class SuratController extends Controller
             'deskripsi' => ['required', 'string', 'min:10'],
         ]);
 
+        $cleanContent = Purifier::clean($request->template_surat, [
+            'HTML.Allowed' => 'p,br,strong,em,b,i,u,ul,ol,li,a[href|title|target],table,thead,tbody,tr,td,th,img[src|alt|title|width|height|class],h1,h2,h3,h4,h5,h6,blockquote',
+            'HTML.AllowedAttributes' => 'href,title,target,src,alt,width,height,class,style',
+            'CSS.AllowedProperties' => 'text-align,font-weight,font-style,text-decoration,border,border-collapse,width,height',
+            'URI.AllowedSchemes' => [
+                'http' => true,
+                'https' => true
+            ]
+        ]);
+        //dd($request->template_surat);
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'kode' => ['required', 'string', 'max:255', 'min:3'],
+            'deskripsi' => ['required', 'string', 'min:10'],
+        ]);
+
+        $jenisSurat = JenisSurat::with('user')->findOrFail($id);
+        $parameter_penduduk = [];
+        foreach ($request->penduduk_keys as $i => $key) {
+            $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
+        }
+        $parameter_lain = [];
+        foreach ($request->lain_keys as $i => $key) {
+            $parameter_lain[] = [$key => $request->lain_values[$i] ?? null];
+        }
+
         JenisSurat::create([
             'nama_surat' => $request->nama,
             'kode_surat' => $request->kode,
             'deskripsi' => $request->deskripsi,
             'user_id' => Auth::user()->id,
+            'template_surat' => $cleanContent,
+            'kelian_ttd' => $request->kelian_ttd != "on",
+            'kepala_desa_ttd' => $request->kepala_desa_ttd != "on",
+            'parameter_penduduk' => json_encode($parameter_penduduk),
+            'parameter_lain' => json_encode($parameter_lain),
         ]);
 
         // ✅ REDIRECT DENGAN PESAN SUKSES
