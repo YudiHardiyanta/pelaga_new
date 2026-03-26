@@ -40,13 +40,19 @@ class SuratController extends Controller
 
         $jenisSurat = JenisSurat::with('user')->findOrFail($id);
         $parameter_penduduk = [];
-        foreach ($request->penduduk_keys as $i => $key) {
-            $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
+        if ($request->penduduk_keys) {
+            foreach ($request->penduduk_keys as $i => $key) {
+                $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
+            }
         }
+
         $parameter_lain = [];
-        foreach ($request->lain_keys as $i => $key) {
-            $parameter_lain[] = [$key => $request->lain_values[$i] ?? null];
+        if ($request->lain_keys) {
+            foreach ($request->lain_keys as $i => $key) {
+                $parameter_lain[] = [$key => $request->lain_values[$i] ?? null];
+            }
         }
+
 
         $jenisSurat->update([
             'nama_surat' => $request->nama,
@@ -103,15 +109,20 @@ class SuratController extends Controller
             'deskripsi' => ['required', 'string', 'min:10'],
         ]);
 
-        $jenisSurat = JenisSurat::with('user')->findOrFail($id);
         $parameter_penduduk = [];
-        foreach ($request->penduduk_keys as $i => $key) {
-            $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
+        if ($request->penduduk_keys) {
+            foreach ($request->penduduk_keys as $i => $key) {
+                $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
+            }
         }
+
         $parameter_lain = [];
-        foreach ($request->lain_keys as $i => $key) {
-            $parameter_lain[] = [$key => $request->lain_values[$i] ?? null];
+        if ($request->lain_keys) {
+            foreach ($request->lain_keys as $i => $key) {
+                $parameter_lain[] = [$key => $request->lain_values[$i] ?? null];
+            }
         }
+
 
         JenisSurat::create([
             'nama_surat' => $request->nama,
