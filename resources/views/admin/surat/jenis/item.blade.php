@@ -151,6 +151,7 @@ Jenis Surat
                             <div class="col-lg-9">
                                 <div class="input-group">
                                     <div id="parameter_penduduk_wrapper">
+                                        @if($jenis_surat)
                                         @if($jenis_surat->parameter_penduduk)
 
                                         @php
@@ -200,6 +201,7 @@ Jenis Surat
                                         @endforeach
 
                                         @endif
+                                        @endif
                                     </div>
 
 
@@ -221,6 +223,7 @@ Jenis Surat
                             <div class="col-lg-9">
                                 <div class="input-group">
                                     <div id="parameter_lainnya_wrapper">
+                                        @if($jenis_surat)
                                         @if($jenis_surat->parameter_lain)
 
                                         @php
@@ -247,6 +250,7 @@ Jenis Surat
                                         @endforeach
                                         @endforeach
 
+                                        @endif
                                         @endif
                                     </div>
 

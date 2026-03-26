@@ -101,7 +101,8 @@ class SuratController extends Controller
     {
         $mode = 'Tambah';
         return view('admin.surat.jenis.item', [
-            'mode' => $mode
+            'mode' => $mode,
+            'jenis_surat' => null,
         ]);
     }
     public function jenisSuratPage(Request $request)
