@@ -68,11 +68,6 @@ class SuratController extends Controller
 
         //dd($request->penduduk_keys);
 
-
-        $parameter_lain = [];
-        foreach ($request->penduduk_values as $i => $key) {
-            $parameter_penduduk[] = [$key => $request->penduduk_values[$i] ?? null];
-        }
         return redirect('admin/jenis-surat')->with('success', 'Jenis Surat berhasil diedit');
     }
 
