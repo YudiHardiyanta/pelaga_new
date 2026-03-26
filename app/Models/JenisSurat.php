@@ -11,7 +11,13 @@ class JenisSurat extends Model
         'nama_surat',
         'kode_surat',
         'deskripsi',
-        'user_id'
+        'user_id',
+        'kelian_ttd',
+        'kepala_desa_ttd',
+        'template_surat',
+        'parameter_penduduk',
+        'parameter_lain',
+
     ];
 
     public function user()

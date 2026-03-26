@@ -183,6 +183,32 @@ class UserController extends Controller
         ]);
     }
 
+    public function getPendudukByNIK(Request $request, $nik){
+        $user = User::where('users.nik','=',$nik)
+                ->join('penduduks','penduduks.nik','users.nik')
+                ->join('banjars','penduduks.banjar_id','banjars.id')
+                ->select('users.name','users.nik','users.kk','users.jk','users.email','users.telepon',
+                'penduduks.alamat','penduduks.tempat_lahir','penduduks.tanggal_lahir','penduduks.agama',
+                'penduduks.pendidikan','penduduks.pekerjaan','penduduks.gol_darah','penduduks.status_perkawinan',
+                'penduduks.tanggal_perkawinan','penduduks.status_dalam_hubungan_keluarga',
+                'penduduks.kewarganegaraan',
+                'banjars.nama as banjar')
+                ->first();
+        if($user['jk']=='L'){
+            $user['jk']='Laki-Laki';
+        }
+        if($user['jk']=='P'){
+            $user['jk']='Perempuan';
+        }
+        $user['tanggal_lahir']=$user['tanggal_lahir']?\Carbon\Carbon::parse($user['tanggal_lahir'])->locale('id')->translatedFormat('j F Y') : null;
+        $user['tanggal_perkawinan']=$user['tanggal_perkawinan']?\Carbon\Carbon::parse($user['tanggal_perkawinan'])->locale('id')->translatedFormat('j F Y') : null;
+
+        return response()->json([
+            'code' => 200,
+            'data' => $user
+        ]);
+    }
+
     public function tes(Request $request)
     {
         return Auth::user()->UserRoles->Roles;

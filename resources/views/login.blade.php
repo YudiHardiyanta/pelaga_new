@@ -64,13 +64,6 @@
                                                             </div>
                                                         </div>
 
-                                                        {!! NoCaptcha::display() !!}
-
-                                                        @if ($errors->has('g-recaptcha-response'))
-                                                        <span class="text-danger">
-                                                            {{ $errors->first('g-recaptcha-response') }}
-                                                        </span>
-                                                        @endif
                                                         <!--end col-->
                                                         <!-- <div class="col-lg-12">
                                                             <div class="mb-3">
@@ -144,7 +137,7 @@
 
     </div>
     <!-- end Style switcher -->
-    {!! NoCaptcha::renderJs() !!}
+    
     <!-- javascript -->
     <script src="resources/js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/feather.min.js"></script>

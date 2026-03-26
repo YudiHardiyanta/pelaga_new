@@ -15,6 +15,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
                         <li class="breadcrumb-item"><a class="text-primary" href="/">Beranda</a></li>
+                        <li class="breadcrumb-item active"><a class="text-secondary" href="/pengaduan">Pengaduan</a></li>
                     </ol>
                 </nav>
             </div>
@@ -101,7 +102,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea cols="30" rows="5" name="uraian" class="form-control @error('uraian') is-invalid @enderror">{{ old('uraian') }}</textarea>
+                                    <textarea cols="30" rows="20" name="uraian" class="form-control @error('uraian') is-invalid @enderror">{{ old('uraian') }}</textarea>
                                     <label for="message">Uraian Pengaduan</label>
                                     @error('uraian')
                                     <div class="invalid-feedback">

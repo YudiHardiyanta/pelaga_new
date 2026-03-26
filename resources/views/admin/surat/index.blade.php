@@ -1,7 +1,7 @@
 @extends('layouts.master-without-page-title')
 
 @section('title')
-Layanan Permohonan
+Surat
 @endsection
 
 @section('css')
@@ -23,7 +23,7 @@ Layanan Permohonan
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{url('admin');}}">Admin</a></li>
-                    <li class="breadcrumb-item active">Permohonan</li>
+                    <li class="breadcrumb-item active">Surat</li>
                 </ol>
             </div>
         </div>
@@ -38,9 +38,12 @@ Layanan Permohonan
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Manajemen Permohonan</h4>
+                <h4 class="card-title">Manajemen Surat</h4>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <a href="{{ url('admin/surat/tambah') }}"><button class="btn btn-primary">Buat Surat</button></a>
+                </div>
                 @if(session('success'))
                 <div class="row mt-2">
                     <div class="alert alert-dismissible alert-success fade show">
@@ -52,17 +55,14 @@ Layanan Permohonan
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card-body">
-                            <table id="permohonan" class="table table-hover table-bordered table-striped dt-responsive nowrap"
+                            <table id="surat" class="table table-hover table-bordered table-striped dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Nama Pemohon</th>
-                                        <th>NIK Pemohon</th>
-                                        <th>Alamat Pemohon</th>
-                                        <th>Telepon Pemohon</th>
-                                        <th>Jenis Permohonan</th>
-                                        <th>Status Permohonan</th>
-                                        <th class="text-end">Aksi</th>
+                                        <th>Nomor Surat</th>
+                                        <th>Jenis Surat</th>
+                                        <th>File</th>
+                                        <th>Tanggal TTD</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,56 +99,34 @@ Layanan Permohonan
 
 <!-- Datatable init js -->
 <script>
-    $('#permohonan').DataTable({
+    $('#surat').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('permohonan') }}",
-        columns: [{
-                data: 'nama_pemohon',
-                name: 'nama_pemohon',
-            },
+        "ajax": "{{ route('surat') }}",
+        columns: [
             {
-                data: 'nik_pemohon',
-                name: 'nik_pemohon'
-            },
-            {
-                data: 'alamat_pemohon',
-                name: 'alamat_pemohon'
-            },
-            {
-                data: 'telepon_pemohon',
-                name: 'telepon_pemohon'
+                data: 'nomor_surat',
+                name: 'nomor_surat',
             },
             {
                 data: 'jenis_surats.nama_surat',
                 name: 'jenis_surats.nama_surat'
             },
             {
-                data: 'status',
-                name: 'status',
+                data: 'file',
+                name: 'file',
                 render: function(data, type, row) {
-                    if(data=='diajukan'){
-                        return '<a href="#" class="btn btn-secondary btn-sm">Diajukan</a>';
-                    }
-                    if(data=='ditolak'){
-                        return '<a href="#" class="btn btn-danger btn-sm">Ditolak</a>';
-                    }
-                    if(data=='diproses'){
-                        return '<a href="#" class="btn btn-warning btn-sm">Diproses</a>';
-                    }
-                    if(data=='selesai'){
-                        return '<a href="#" class="btn btn-success btn-sm">Selesai</a>';
-                    }
+                    return '<a href="/storage/surat/' + data + '" class="btn btn-primary btn-sm">Unduh</a>';
                 },
             },
+
             {
-                data: 'id',
-                name: 'id',
-                render: function(data, type, row) {
-                    return '<a href="/admin/permohonan/proses/' + data + '" class="btn btn-primary btn-sm">Proses</a>';
-                },
-                orderable: false,
-                searchable: false
+                data: 'tanggal_ttd',
+                name: 'tanggal_ttd',
+                render: function(data) {
+                    let date = new Date(data);
+                    return date.toLocaleDateString('id-ID');
+                }
             },
         ],
         "language": {

@@ -85,6 +85,8 @@ Route::get('/admin/jenis-surat/tambah',[App\Http\Controllers\SuratController::cl
 Route::post('/admin/jenis-surat',[App\Http\Controllers\SuratController::class, 'storeJenisSurat'])->middleware('admin');
 Route::get('/admin/jenis-surat/edit/{id}',[App\Http\Controllers\SuratController::class, 'editJenisSurat'])->middleware('admin');
 Route::post('/admin/jenis-surat/{id}',[App\Http\Controllers\SuratController::class, 'patchJenisSurat'])->middleware('admin');
+Route::get('/jenis-surat/get/{id}',[App\Http\Controllers\SuratController::class, 'getJenisSuratById']);
+Route::get('/penduduk/{nik}',[App\Http\Controllers\UserController::class,'getPendudukByNIK'])->middleware('auth');
 //API untuk datatable
 Route::get('/admin/jenis-surat/list',[App\Http\Controllers\SuratController::class, 'getJenisSurat'])->middleware('admin')->name('jenis-surat');
 
@@ -97,8 +99,18 @@ Route::post('/admin/pengaduan/{id}',[App\Http\Controllers\PengaduanController::c
 Route::get('/admin/pengaduan/list',[App\Http\Controllers\PengaduanController::class, 'getDataTable'])->middleware('admin')->name('pengaduan');
 
 //Menu Layanan Permohonan
-Route::get('/admin/permohonan',[App\Http\Controllers\PengaduanController::class, 'page'])->middleware('admin');
+Route::get('/admin/permohonan',[App\Http\Controllers\PermohonanController::class, 'page'])->middleware('admin');
+Route::post('/permohonan',[App\Http\Controllers\PermohonanController::class, 'store']);
+Route::get('/admin/permohonan/proses/{id}',[App\Http\Controllers\PermohonanController::class, 'proses']);
+Route::post('/admin/permohonan/proses/{id_permohonan}/{id_jenis_surat}',[App\Http\Controllers\SuratController::class,'prosesSurat'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/permohonan/list',[App\Http\Controllers\PermohonanController::class, 'getDataTable'])->middleware('admin')->name('permohonan');
 
+
+//Menu Surat
+Route::get('/admin/surat',[App\Http\Controllers\SuratController::class, 'page'])->middleware('admin');
+//API untuk datatable
+Route::get('/admin/surat/list',[App\Http\Controllers\SuratController::class, 'getDataTable'])->middleware('admin')->name('surat');
 
 //Menu di Web
 Route::get('/visi', function () { return view('useri.visi'); });
@@ -117,8 +129,7 @@ Route::post('/pengaduan',[App\Http\Controllers\PengaduanController::class, 'stor
 
 
 //Menu Permohonan di web
-Route::get('/permohonan',[App\Http\Controllers\PermohonanController::class, 'webpage'])->middleware('auth');
-Route::post('/permohonan',function(){return view('web.permohonan');})->middleware('auth');
+Route::get('/permohonan',[App\Http\Controllers\PermohonanController::class, 'webpage']);
 
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
