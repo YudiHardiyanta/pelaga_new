@@ -103,8 +103,7 @@ Berita
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group">
-                                    <div class="input-group-text"><i class="feather-type"></i></div>
-                                    <textarea class="form-control @error('berita') is-invalid @enderror" id="berita" name="berita" cols="30" rows="5" placeholder="Isi Berita">{{ old('berita', $berita->berita_content ?? '') }}</textarea>
+                                    <textarea class="form-control @error('berita') is-invalid @enderror" id="berita" name="berita">{{ old('berita', $berita->berita_content ?? '') }}</textarea>
                                     @error('berita')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -185,4 +184,24 @@ Berita
 <!-- Required datatable js -->
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/dashboard.init.js') }}"></script>
+<script src="{{ URL::asset('build/libs/tinymce/tinymce.min.js') }}"></script>
+<script>
+    if ($("#berita").length > 0) {
+        tinymce.init({
+            selector: 'textarea#berita',
+            height: 400,
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | blocks | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+        });
+    }
+</script>
+
 @endsection
