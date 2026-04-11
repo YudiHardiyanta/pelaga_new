@@ -118,9 +118,15 @@ Berita
             },
             {
                 data: 'berita_content',
-                name: 'berita_content'
+                name: 'berita_content',
+                render: function(data, type, row) {
+                    if (type === 'display' && data.length > 30) {
+                        return data.substr(0, 30) + '...';
+                    }
+                    return data;
+                }
             },
-            
+
             {
                 data: 'created_at',
                 name: 'created_at',
