@@ -182,13 +182,14 @@
                     <img src="{{ asset('storage/berita/'.$b->berita_foto) }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h4 class="card-title">{{$b->berita_title}}</h4>
-                        <p class="card-text">{!!$b->berita_content!!}</p>
+                        <p class="card-text">{{ Str::limit(strip_tags($b->berita_content), 200) }}</p>
                         <p class="card-text">Dibuat Pada : {{\Carbon\Carbon::parse($b->created_at)->locale('id')->translatedFormat('j F Y H:i')}}</p>
                         <a href="/berita/{{$b->id}}">Klik untuk lanjutkan...</a>
                     </div>
                 </div>
             </div>
             @endforeach
+            {{ $berita->links() }}
 
             <!-- <div>
                 <button class="btn btn-primary text-center">Lihat Berita Lainnya</button>

@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class WebController extends Controller
 {
+    public function __construct()
+    {
+        Paginator::useBootstrap();
+    }
     //
     public function home(Request $request)
     {
-        $berita = Berita::where('status', 1)->latest('created_at')->get();
+        $berita = Berita::where('status', 1)->latest('created_at')->paginate(9);
         $galery = Gallery::from('galleries as g1')
             ->select('g1.kegiatan')
             ->selectRaw('COUNT(*) as total')
